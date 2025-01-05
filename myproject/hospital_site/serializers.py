@@ -39,6 +39,7 @@ class LoginSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("Неверные учетные данные")
 
+
     def to_representation(self, instance):
         refresh = RefreshToken.for_user(instance)
         return {
@@ -103,11 +104,11 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
 
 
-
 class PrescriptionsSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prescriptions
         fields = ['medication', 'dosage']
+
 
 
 class PrescriptionsSerializer(serializers.ModelSerializer):
@@ -123,7 +124,6 @@ class MedicalRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = MedicalRecord
         fields = ['patient_id','doctor_id', 'diagnosis', 'treatment', 'prescribed_medication', 'created_at']
-
 
 
 
@@ -169,6 +169,7 @@ class FeedbackSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
         fields = ['patient', 'rating', 'comment']
+
 
 
 class FeedbackSerializer(serializers.ModelSerializer):

@@ -4,6 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from multiselectfield import MultiSelectField
 
 
+
 class Profile(AbstractUser):
     ROLE_CHOICES = (
         ('admin', 'Admin'),
@@ -53,6 +54,7 @@ class Doctor(models.Model):
         if ratings.exists():
             return round(sum(i.rating for i in ratings) / ratings.count(), 1)
         return 0
+
 
 
 class Patient(models.Model):
@@ -151,9 +153,11 @@ class Feedback(models.Model):
         return f'{self.patient}-{self.doctor}'
 
 
+
 class Chat(models.Model):
     person = models.ManyToManyField(Profile)
     created_date = models.DateField()
+
 
 
 class Message(models.Model):

@@ -36,6 +36,8 @@ class ProductAdmin(TranslationAdmin):
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
 
+
+
 admin.site.register(Profile)
 admin.site.register(Billing)
 admin.site.register(Ward)

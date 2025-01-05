@@ -11,6 +11,7 @@ class ProductTranslationOptions(TranslationOptions):
 class ProductTranslationOptions(TranslationOptions):
     fields = ('qualification',)
 
+
 @register(Patient)
 class ProductTranslationOptions(TranslationOptions):
     fields = ('allergies', 'medical_history')

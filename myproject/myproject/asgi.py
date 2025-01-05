@@ -26,4 +26,3 @@ application = ProtocolTypeRouter(
         )
     }
 )
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')

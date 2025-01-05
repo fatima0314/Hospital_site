@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 
+
 class RegisterView(generics.CreateAPIView):
     serializer_class = ProfileRegisterSerializer
 
@@ -16,6 +17,7 @@ class RegisterView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         return Response(serializer.data,  status=status.HTTP_201_CREATED)
+
 
 
 class CustomLoginView(TokenObtainPairView):
@@ -30,6 +32,7 @@ class CustomLoginView(TokenObtainPairView):
 
         user = serializer.validated_data
         return Response(serializer.data, status = status.HTTP_200_OK)
+
 
 
 class LogoutView(generics.GenericAPIView):
@@ -55,14 +58,15 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
 class ProfileCreateApiView(generics.CreateAPIView):
     serializer_class = ProfileSerializer
-    permissions = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
 
 
 class SpecialityApiView(generics.ListCreateAPIView):
     queryset = Speciality.objects.all()
     serializer_class = SpecialitySerializer
-    permissions = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
+
 
 
 class DoctorListApiView(generics.ListAPIView):
@@ -74,14 +78,16 @@ class DoctorListApiView(generics.ListAPIView):
     pagination_class = [DoctorPagination]
 
 
+
 class DoctorDetailApiView(generics.RetrieveAPIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorDetailSerializer
 
 
+
 class DoctorCreateApiView(generics.CreateAPIView):
     serializer_class = DoctorCreateSerializer
-    permissions = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
 
 
@@ -90,9 +96,11 @@ class PatientListApiView(generics.ListAPIView):
     serializer_class = PatientListSerializer
 
 
+
 class PatientDetailApiView(generics.RetrieveAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientDetailSerializer
+
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
@@ -101,7 +109,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['name']
     searching_fields = ['name']
-    permissions = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
+
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
@@ -127,21 +136,21 @@ class MedicalRecordApiView(generics.ListCreateAPIView):
 class PrescriptionsViewSet(viewsets.ModelViewSet):
     queryset = Prescriptions.objects.all()
     serializer_class = PrescriptionsSerializer
-    permissions = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
 
 
 class BillingViewSet(viewsets.ModelViewSet):
     queryset = Billing.objects.all()
     serializer_class = BillingSerializer
-    permissions = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
 
 
 class WardViewSet(viewsets.ModelViewSet):
     queryset = Ward.objects.all()
     serializer_class = WardSerializer
-    permissions = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
 
 
